@@ -1,6 +1,5 @@
 
 function addTask() {
-
     let input = document.getElementById("taskInput");
     let taskName = input.value.trim();
 
@@ -10,12 +9,14 @@ function addTask() {
     }
 
     let taskList = document.getElementById("taskList");
-
     let task = document.createElement("p");
 
     let checkbox = document.createElement("input");
     checkbox.type = "checkbox";
-    checkbox.onchange = updateProgress;
+    checkbox.onchange = function() {
+        saveTasks();
+        updateProgress();
+    };
 
     let taskText = document.createElement("span");
     taskText.innerText = " " + taskName + " ";
@@ -25,23 +26,22 @@ function addTask() {
 
     deleteButton.onclick = function() {
         task.remove();
+        saveTasks();
         updateProgress();
     };
 
     task.appendChild(checkbox);
     task.appendChild(taskText);
     task.appendChild(deleteButton);
-
     taskList.appendChild(task);
 
     input.value = "";
 
+    saveTasks();
     updateProgress();
 }
 
-
 function updateProgress() {
-
     let tasks = document.querySelectorAll(
         '#taskList input[type="checkbox"]'
     );
@@ -55,7 +55,6 @@ function updateProgress() {
     }
 
     let total = tasks.length;
-
     let percentage = 0;
 
     if (total > 0) {
@@ -72,9 +71,7 @@ function updateProgress() {
         completed + " of " + total + " tasks completed";
 }
 
-
 function resetTasks() {
-
     let tasks = document.querySelectorAll(
         '#taskList input[type="checkbox"]'
     );
@@ -83,5 +80,70 @@ function resetTasks() {
         tasks[i].checked = false;
     }
 
+    saveTasks();
     updateProgress();
 }
+
+function saveTasks() {
+    let tasks = document.querySelectorAll("#taskList p");
+    let taskData = [];
+
+    for (let i = 0; i < tasks.length; i++) {
+        let checkbox = tasks[i].querySelector("input");
+        let taskText = tasks[i].querySelector("span");
+
+        taskData.push({
+            name: taskText.innerText.trim(),
+            completed: checkbox.checked
+        });
+    }
+
+    localStorage.setItem("studyTasks", JSON.stringify(taskData));
+}
+
+function loadTasks() {
+    let savedTasks = localStorage.getItem("studyTasks");
+
+    if (savedTasks !== null) {
+        let taskData = JSON.parse(savedTasks);
+
+        for (let i = 0; i < taskData.length; i++) {
+            addSavedTask(taskData[i]);
+        }
+    }
+
+    updateProgress();
+}
+
+function addSavedTask(data) {
+    let taskList = document.getElementById("taskList");
+    let task = document.createElement("p");
+
+    let checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = data.completed;
+
+    checkbox.onchange = function() {
+        saveTasks();
+        updateProgress();
+    };
+
+    let taskText = document.createElement("span");
+    taskText.innerText = " " + data.name + " ";
+
+    let deleteButton = document.createElement("button");
+    deleteButton.innerText = "Delete";
+
+    deleteButton.onclick = function() {
+        task.remove();
+        saveTasks();
+        updateProgress();
+    };
+
+    task.appendChild(checkbox);
+    task.appendChild(taskText);
+    task.appendChild(deleteButton);
+    taskList.appendChild(task);
+}
+
+loadTasks();
