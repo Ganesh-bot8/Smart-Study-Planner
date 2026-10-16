@@ -1,58 +1,143 @@
 
 body {
-    font-family: Arial;
-    background-color: lightblue;
-    color: black;
-    padding: 20px;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, midnightblue, navy);
+    color: white;
+    padding: 22px;
+    margin: 0;
+    line-height: 1.6;
 }
 
 h1 {
-    color: blue;
+    color: mediumpurple;
     text-align: center;
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+
+h1 + p {
+    text-align: center;
+    color: lightsteelblue;
+    margin-top: 0;
+    margin-bottom: 30px;
 }
 
 h2 {
-    color: darkblue;
+    color: lavender;
+    font-size: 21px;
+    margin-top: 28px;
 }
 
 #percentage {
-    color: green;
-    font-size: 22px;
+    color: turquoise;
+    font-size: 25px;
+    font-weight: bold;
 }
 
 #progress {
-    background-color: lightgray;
-    height: 20px;
+    background: slategray;
+    height: 14px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 12px 0;
 }
 
 #bar {
-    background-color: green;
-    height: 20px;
+    background: linear-gradient(90deg, blueviolet, cyan);
+    height: 100%;
     width: 0%;
+    border-radius: 20px;
+    transition: width 0.3s;
 }
 
-input {
-    padding: 10px;
+#count {
+    color: lightsteelblue;
+}
+
+input[type="text"],
+input[type="date"],
+select {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 500px;
+    padding: 13px;
+    margin-top: 7px;
+    border: 1px solid slateblue;
+    border-radius: 10px;
+    background: midnightblue;
+    color: white;
+    font-size: 16px;
+}
+
+label {
+    display: inline-block;
+    margin-top: 12px;
+    color: lavender;
 }
 
 button {
-    background-color: blue;
+    background: linear-gradient(100deg, blueviolet, royalblue);
     color: white;
-    padding: 10px;
+    padding: 12px 18px;
+    margin-top: 12px;
     border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: darkblue;
+    opacity: 0.88;
 }
 
 #taskList p {
-    background-color: white;
-    padding: 10px;
-    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    background: midnightblue;
+    border: 1px solid slateblue;
+    border-radius: 12px;
+    padding: 14px;
+    margin: 12px 0;
+    overflow-wrap: anywhere;
+}
+
+#taskList input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: blueviolet;
+    flex-shrink: 0;
+}
+
+#taskList span {
+    flex: 1;
+    min-width: 120px;
 }
 
 #taskList button {
-    background-color: red;
+    background: crimson;
+    padding: 8px 12px;
+    margin-top: 0;
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 16px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    h2 {
+        font-size: 19px;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    select {
+        max-width: 100%;
+    }
 }
