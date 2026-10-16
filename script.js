@@ -2,24 +2,47 @@
 function addTask() {
     let input = document.getElementById("taskInput");
     let taskName = input.value.trim();
+    let subject = document.getElementById("subjectInput").value;
+    let deadline = document.getElementById("deadlineInput").value;
 
     if (taskName === "") {
         alert("Please enter a task!");
         return;
     }
 
+    let task = {
+        name: taskName,
+        subject: subject,
+        deadline: deadline,
+        completed: false
+    };
+
+    displayTask(task);
+
+    input.value = "";
+    document.getElementById("deadlineInput").value = "";
+
+    saveTasks();
+    updateProgress();
+}
+
+function displayTask(data) {
     let taskList = document.getElementById("taskList");
     let task = document.createElement("p");
 
     let checkbox = document.createElement("input");
     checkbox.type = "checkbox";
+    checkbox.checked = data.completed;
+
     checkbox.onchange = function() {
         saveTasks();
         updateProgress();
     };
 
     let taskText = document.createElement("span");
-    taskText.innerText = " " + taskName + " ";
+    taskText.innerText =
+        data.name + " | Subject: " + data.subject +
+        " | Deadline: " + (data.deadline || "Not set");
 
     let deleteButton = document.createElement("button");
     deleteButton.innerText = "Delete";
@@ -33,12 +56,12 @@ function addTask() {
     task.appendChild(checkbox);
     task.appendChild(taskText);
     task.appendChild(deleteButton);
+
     taskList.appendChild(task);
 
-    input.value = "";
-
-    saveTasks();
-    updateProgress();
+    task.dataset.name = data.name;
+    task.dataset.subject = data.subject;
+    task.dataset.deadline = data.deadline;
 }
 
 function updateProgress() {
@@ -90,10 +113,11 @@ function saveTasks() {
 
     for (let i = 0; i < tasks.length; i++) {
         let checkbox = tasks[i].querySelector("input");
-        let taskText = tasks[i].querySelector("span");
 
         taskData.push({
-            name: taskText.innerText.trim(),
+            name: tasks[i].dataset.name,
+            subject: tasks[i].dataset.subject,
+            deadline: tasks[i].dataset.deadline,
             completed: checkbox.checked
         });
     }
@@ -108,42 +132,11 @@ function loadTasks() {
         let taskData = JSON.parse(savedTasks);
 
         for (let i = 0; i < taskData.length; i++) {
-            addSavedTask(taskData[i]);
+            displayTask(taskData[i]);
         }
     }
 
     updateProgress();
-}
-
-function addSavedTask(data) {
-    let taskList = document.getElementById("taskList");
-    let task = document.createElement("p");
-
-    let checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.checked = data.completed;
-
-    checkbox.onchange = function() {
-        saveTasks();
-        updateProgress();
-    };
-
-    let taskText = document.createElement("span");
-    taskText.innerText = " " + data.name + " ";
-
-    let deleteButton = document.createElement("button");
-    deleteButton.innerText = "Delete";
-
-    deleteButton.onclick = function() {
-        task.remove();
-        saveTasks();
-        updateProgress();
-    };
-
-    task.appendChild(checkbox);
-    task.appendChild(taskText);
-    task.appendChild(deleteButton);
-    taskList.appendChild(task);
 }
 
 loadTasks();
