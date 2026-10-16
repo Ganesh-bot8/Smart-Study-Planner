@@ -1,0 +1,26 @@
+body {
+    font-family: Arial;
+    background: white;
+    padding: 20px;
+}
+
+h1 {
+    color: blue;
+}
+
+#progress {
+    background: lightgray;
+    height: 15px;
+}
+
+#bar {
+    background: green;
+    height: 15px;
+    width: 0%;
+}
+
+button {
+    background: blue;
+    color: white;
+    padding: 10px;
+}
