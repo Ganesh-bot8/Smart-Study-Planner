@@ -1,26 +1,99 @@
+
 body {
-    font-family: Arial;
-    background: white;
+    font-family: Arial, sans-serif;
+    background: aliceblue;
     padding: 20px;
+    max-width: 600px;
+    margin: auto;
+    color: black;
 }
 
 h1 {
+    color: blue;
+    text-align: center;
+}
+
+h2 {
+    color: darkslategray;
+    margin-top: 25px;
+}
+
+p {
+    line-height: 1.5;
+}
+
+#percentage {
+    font-size: 22px;
+    font-weight: bold;
     color: blue;
 }
 
 #progress {
     background: lightgray;
-    height: 15px;
+    height: 18px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 10px 0;
 }
 
 #bar {
     background: green;
-    height: 15px;
+    height: 18px;
     width: 0%;
+    transition: width 0.3s;
+}
+
+input[type="text"] {
+    padding: 10px;
+    width: 60%;
+    max-width: 300px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    box-sizing: border-box;
 }
 
 button {
     background: blue;
     color: white;
-    padding: 10px;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: darkblue;
+}
+
+#taskList p {
+    background: white;
+    padding: 12px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px lightgray;
+    overflow-wrap: anywhere;
+}
+
+#taskList input[type="checkbox"] {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+#taskList button {
+    background: crimson;
+}
+
+#taskList button:hover {
+    background: darkred;
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 12px;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        max-width: none;
+    }
 }
