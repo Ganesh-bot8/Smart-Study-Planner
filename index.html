@@ -1,57 +1,79 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Study Planner</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h1>🎓Smart Study Planner</h1>
-    <p>Plan your day. Track your goals.</p>
+    <header class="header">
+        <h1>🎓 Smart Study Planner</h1>
+        <p>Plan your day. Track your goals.</p>
+    </header>
 
-    <h2>Today's Progress</h2>
-    <p id="percentage">0% Completed</p>
+    <main class="container">
 
-    <div id="progress">
-        <div id="bar"></div>
-    </div>
+        <section class="card progress-card">
+            <h2>Today's Progress</h2>
+            <p id="percentage">0% Completed</p>
 
-    <p id="count">0 of 0 tasks completed</p>
+            <div id="progress">
+                <div id="bar"></div>
+            </div>
 
-    <h2>Add a Study Task</h2>
+            <p id="count">0 of 0 tasks completed</p>
+        </section>
 
-    <input type="text" id="taskInput"
-           placeholder="Enter your study task">
+        <section class="card">
+            <h2>➕ Add a Study Task</h2>
 
-    <br><br>
+            <form id="taskForm">
+                <label for="taskInput">Task name</label>
+                <input
+                    type="text"
+                    id="taskInput"
+                    placeholder="What do you want to study?"
+                    required
+                >
 
-    <label for="subjectInput">Choose Subject:</label>
+                <label for="subjectInput">Choose subject</label>
+                <select id="subjectInput">
+                    <option value="Java">Java</option>
+                    <option value="Python">Python</option>
+                    <option value="College">College Subjects</option>
+                    <option value="Other">Other</option>
+                </select>
 
-    <select id="subjectInput">
-        <option value="Java">Java</option>
-        <option value="Python">Python</option>
-        <option value="College">College Subjects</option>
-        <option value="Other">Other</option>
-    </select>
+                <label for="deadlineInput">Deadline (optional)</label>
+                <input type="date" id="deadlineInput">
 
-    <br><br>
+                <button type="submit" class="add-button">
+                    + Add Task
+                </button>
+            </form>
+        </section>
 
-    <label for="deadlineInput">Deadline:</label>
+        <section class="card">
+            <h2>📚 Your Study Tasks</h2>
 
-    <input type="date" id="deadlineInput">
+            <div id="taskList"></div>
 
-    <br><br>
+            <p id="emptyMessage">No tasks yet. Add your first study task!</p>
 
-    <button onclick="addTask()">Add Task</button>
+            <button type="button" id="resetButton" class="reset-button">
+                Reset Tasks
+            </button>
+        </section>
 
-    <h2>Today's Study Tasks</h2>
+    </main>
 
-    <div id="taskList"></div>
-
-    <button onclick="resetTasks()">Reset Tasks</button>
+    <footer>
+        <p>Small steps every day lead to big results. ✨</p>
+    </footer>
 
     <script src="script.js"></script>
-
 </body>
 </html>
