@@ -1,11 +1,9 @@
 
 body {
-    font-family: Arial, sans-serif;
-    background: aliceblue;
-    padding: 20px;
-    max-width: 600px;
-    margin: auto;
+    font-family: Arial;
+    background-color: lightblue;
     color: black;
+    padding: 20px;
 }
 
 h1 {
@@ -14,86 +12,47 @@ h1 {
 }
 
 h2 {
-    color: darkslategray;
-    margin-top: 25px;
-}
-
-p {
-    line-height: 1.5;
+    color: darkblue;
 }
 
 #percentage {
+    color: green;
     font-size: 22px;
-    font-weight: bold;
-    color: blue;
 }
 
 #progress {
-    background: lightgray;
-    height: 18px;
-    border-radius: 10px;
-    overflow: hidden;
-    margin: 10px 0;
+    background-color: lightgray;
+    height: 20px;
 }
 
 #bar {
-    background: green;
-    height: 18px;
+    background-color: green;
+    height: 20px;
     width: 0%;
-    transition: width 0.3s;
 }
 
-input[type="text"] {
+input {
     padding: 10px;
-    width: 60%;
-    max-width: 300px;
-    border: 1px solid gray;
-    border-radius: 5px;
-    box-sizing: border-box;
 }
 
 button {
-    background: blue;
+    background-color: blue;
     color: white;
-    padding: 10px 14px;
+    padding: 10px;
     border: none;
-    border-radius: 5px;
-    margin: 5px;
     cursor: pointer;
 }
 
 button:hover {
-    background: darkblue;
+    background-color: darkblue;
 }
 
 #taskList p {
-    background: white;
-    padding: 12px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px lightgray;
-    overflow-wrap: anywhere;
-}
-
-#taskList input[type="checkbox"] {
-    cursor: pointer;
-    transform: scale(1.2);
+    background-color: white;
+    padding: 10px;
+    margin: 10px 0;
 }
 
 #taskList button {
-    background: crimson;
-}
-
-#taskList button:hover {
-    background: darkred;
-}
-
-@media (max-width: 480px) {
-    body {
-        padding: 12px;
-    }
-
-    input[type="text"] {
-        width: 100%;
-        max-width: none;
-    }
+    background-color: red;
 }
