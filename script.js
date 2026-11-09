@@ -14,7 +14,7 @@ function addTask() {
         name: taskName,
         subject: subject,
         deadline: deadline,
-        completed: false
+        completed: true
     };
 
     displayTask(task);
